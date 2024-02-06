@@ -25,4 +25,7 @@
  ### 👉 You can also run several tests for this project in your terminal: 
   #### npm run test
 
+## 🚨 Note
+ ### The first filtering by checked type takes longer than expected. I couln't use pagination for displaing filtred list. So we get small delay on this action.
+
 
