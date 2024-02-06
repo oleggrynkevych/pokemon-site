@@ -1,0 +1,818 @@
+@use './styles/mixins.scss';
+@import './styles/variables.scss';
+
+
+// Header Styles 
+
+.header {
+    width: 100%;
+    height: $headerHeight;
+    background-color: $yellow;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    transition: top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    @include mixins.flex(row, center, center);
+
+    &.hide {
+        top: -100%;
+    }
+
+    .header-container {
+        width: calc(100% - 80px);
+        max-width: 1360px;
+        color: $darkBlue;
+        @include mixins.flex(row, space-between, center);
+        @include mixins.font(Pokemon, 40px, normal, 800, 90%);
+
+        img {
+            width: 130px;
+            cursor: pointer;
+        }
+
+        .header-link {
+            color: $darkBlue;
+            position: relative;
+            padding: 1px;
+            cursor: pointer;
+            
+            &::before {
+                content: '';
+                width: 0px;
+                height: 3px;
+                background-color: $darkBlue;
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                transition: all 0.4s ease-in-out;
+            }
+
+            &:hover::before {
+                right: unset;
+                left: 0px;
+                width: 100%;
+            }
+
+        }
+    }
+}
+
+
+// Hero Section Styles
+
+.hero-section {
+    width: 100%;
+    height: calc(100vh - $headerHeight);
+    position: relative;
+    @include mixins.flex(row, center, center);
+
+    div {
+        background-image: url('./assets/hero-image.webp');
+        width: 1200px;
+        height: 600px;
+        object-fit: contain;
+        box-shadow: 0 0 16px 16px $yellow inset;
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        background-position: 0% 0%;
+
+        @media (max-width: 1300px) {
+            width: 100%;
+            height: 500px;
+            
+        }
+
+        @media (max-width: 800px) {
+            background-size: 150% auto;
+            background-position: 0% 30%;
+        }
+
+        @media (max-width: 500px) {
+            background-size: 300% 100%;
+            background-position: 50% 0%;
+        }
+    }
+
+    .hero-section-link {
+        width: 350px;
+        height: 100px;
+        position: absolute;
+        background-color: $yellow;
+        color: $darkBlue;
+        border-radius: 40px;
+        text-transform: uppercase;
+        transition: all 0.4s ease-in-out;
+        overflow: hidden;
+        cursor: pointer;
+        @include mixins.font(PokemonOutlined, 50px, normal, 800, 90%);
+        @include mixins.flex(row, center, center);
+
+        span {
+            position: relative;
+            z-index: 2;
+        }
+
+        &::before {
+            content: '';
+            width: 0px;
+            height: 100%;
+            background-color: $darkBlue;
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            transition: all 0.4s ease-in-out;
+        }
+
+        &:hover{
+            color: $yellow;
+
+            &::before {
+                right: unset;
+                left: 0px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 500px) {
+            width: 220px;
+            height: 70px;
+            @include mixins.font(PokemonOutlined, 40px, normal, 800, 90%);
+        }
+        
+        
+    }
+}
+
+// Home Page Styles
+
+.home-page {
+    width: 100%;
+    @include mixins.flex(row, center, center);
+
+    .home-page-container {
+        width: calc(100% - 80px);
+        max-width: 1360px;
+
+        @media (max-width: 800px) {
+            width: calc(100% - 30px);
+        } 
+
+        .pokemon-section {
+            width: 100%;
+            padding: 100px  0;
+            @include mixins.flex(column, flex-start, center);
+
+            .pokemon-controllers {
+                gap: 50px;
+                @include mixins.flex(row, center, center);
+
+                @media (max-width: 1100px) {
+                    gap: unset;
+                    @include mixins.flex(column, center, center);
+                }
+            }
+        
+            .pokemons-info-box {
+                width: 100%;
+                min-height: 400px;
+                gap: 40px;
+                flex-wrap: wrap; 
+                padding-bottom: 100px;
+                position: relative;
+                @include mixins.flex(row, center, center);
+
+                .show-more-btn{
+                    width: 150px;
+                    height: 70px;
+                    border-radius: 60%;
+                    border: none;
+                    background-color: $darkBlue;
+                    color: $yellow;
+                    transition: all 0.3s ease-in-out;
+                    position: absolute;
+                    bottom: 0px;
+                    cursor: pointer;
+                    @include mixins.font(PokemonOutlined, 20px, normal, 800, 90%);
+
+
+                    &:hover {
+                        transform: scale(1.3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Pokemon Page Styles
+
+.pokemon-page {
+    width: 100%;
+    min-height: calc(100vh - $headerHeight);
+    @include mixins.flex(row, center, center);
+
+    .pokemon-page-container {
+        width: calc(100% - 80px);
+        max-width: 1360px;
+        padding-bottom: 100px;
+        gap: 50px;
+        @include mixins.flex(column, flex-start, center);
+
+        @media (max-width: 800px) {
+            width: calc(100% - 30px);
+            gap: 30px;
+        }
+
+        .back-button {
+            width: 100px;
+            height: 50px;
+            margin: 50px 0 0 100px;
+            align-self: flex-start;
+            border-radius: 60%;
+            border: none;
+            background-color: $darkBlue;
+            color: $yellow;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            @include mixins.font(PokemonOutlined, 20px, normal, 800, 90%);
+            @include mixins.flex(row, center, center);
+
+            &:hover {
+                transform: scale(1.3);
+            }
+
+            img {
+                width: 30px;
+            }
+
+            @media (max-width: 800px) {
+                margin: 50px 0 0 40px;         
+            }
+            
+        }
+
+        .polemon-page-main {
+            width: 100%;
+            gap: 50px;
+            @include mixins.flex(row, center, flex-start);
+
+            @media (max-width: 600px) {
+                gap: 30px;
+                @include mixins.flex(column, flex-start, center);
+            }
+
+            img {
+                width: 350px;
+
+                @media (max-width: 800px) {
+                    width: 50%;
+                }
+
+                @media (max-width: 600px) {
+                    width: 80%;
+                }
+            }
+
+            .pokemon-page-base-info {
+                width: 350px;
+                height: 400px;
+
+                @media (max-width: 800px) {
+                    width: 50%;
+                    height: unset;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
+                    @include mixins.flex(column, flex-start, center);
+                }
+
+                .pokemon-page-type-box {
+                    gap: 20px;
+                    margin-bottom: 30px;
+                    @include mixins.flex(row, flex-start, center);
+
+                    button {
+                        height: 22px;
+                        color: $blue;
+                        background-color: $yellow;
+                        border: none;
+                        position: relative;
+                        cursor: pointer;
+                        @include mixins.font(Pokemon, 25px, normal, 100, 90%);
+
+                        &::before {
+                            content: '';
+                            width: 0px;
+                            height: 1px;
+                            background-color: $blue;
+                            position: absolute;
+                            bottom: 0px;
+                            right: 0px;
+                            transition: all 0.4s ease-in-out;
+                        }
+
+                        &:hover::before {
+                            right: unset;
+                            left: 0px;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                h1 {
+                    margin-bottom: 30px;
+                    text-transform: uppercase;
+                    color: $darkBlue;
+                    @include mixins.font(PokemonOutlined, 70px, normal, 900, 90%);
+
+                    @media (max-width: 600px) {
+                        width: 100%;
+                        text-align: center;
+                        @include mixins.font(PokemonOutlined, 90px, normal, 900, 90%);
+                    }
+                }
+
+                .pokemon-page-short-stat{
+                    color: $blue;
+                    margin-bottom: 10px;
+                    @include mixins.font(PokemonOutlined, 35px, normal, 900, 90%);
+                }
+
+
+            }
+        }
+
+        .pokemon-page-add-info {
+            width: 100%;
+            @include mixins.flex(column, flex-start, center);
+
+            .pokemon-page-add-info-box {
+                min-width: 300px;
+                max-width: calc(100% - 60px);
+                padding: 30px;
+                margin-bottom: 50px;
+                border: 8px solid $red;
+                position: relative;
+                gap: 15px;
+                flex-wrap: wrap;
+                @include mixins.flex(row, flex-start, flex-start);
+
+                @media (max-width: 600px) {
+                    width: 100%;
+                    min-width: unset;
+                    max-width: calc(100% - 60px);
+                }
+
+                &.stats {
+                    min-width: 300px;
+                    max-width: 500px;
+                    @include mixins.flex(column, flex-start, flex-start);
+
+                    @media (max-width: 600px) {
+                        width: 100%;
+                        min-width: unset;
+                        max-width: calc(100% - 60px);
+                    }
+
+                    &::after {
+                        content: 'STATS';
+                    }
+
+                    .pokemon-page-skill {
+                        &:last-child {
+                            font-size: 35px;
+                        }
+                    }
+                }
+
+                &::after {
+                    content: 'MOVES';
+                    width: 100px;
+                    height: 30px;
+                    position: absolute;
+                    background-color: $yellow;
+                    color: $red;
+                    top: -20px;
+                    left: 30px;
+                    @include mixins.font(Pokemon, 35px, normal, 900, 90%);
+                    @include mixins.flex(row, center, center);
+                }
+
+                .pokemon-page-skill {
+                    color: $darkBlue;
+                    @include mixins.font(Pokemon, 25px, normal, 400, 90%);
+                }
+            }
+        }
+    }
+}
+
+// Pokemon Card Styles
+
+.pokemon-card {
+    width: 270px;
+    height: 420px;
+    background-color: $darkBlue;
+    padding:  0 0 20px 0;
+    border-radius: 15%;
+    gap: 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    @include mixins.flex(column, flex-start, center);
+
+    &:hover {
+        transform: scale(0.9);
+
+        button {
+            transform: scale(1.3);
+         }
+    }
+    
+    
+
+    img {
+        max-width: 90%;
+        height: 200px;
+        object-fit: contain;
+    }
+
+    span {
+        width: 95%;
+        text-align: center;
+        color: $yellow;
+        text-transform: uppercase;
+        @include mixins.font(PokemonOutlined, 50px, normal, 800, 90%);
+    }
+
+    div {
+        color: $blue;
+        @include mixins.font(Pokemon, 30px, normal, 300, 90%);
+    }
+
+    button {
+        width: 150px;
+        height: 40px;
+        background-color: $yellow;
+        color: $darkBlue;
+        border: none;
+        border-radius: 60%;
+        transform-origin: center;
+        position: absolute;
+        bottom: 20px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        @include mixins.font(Pokemon, 30px, normal, 300, 90%);
+    }
+}
+
+
+// Search Bar
+
+.search-bar {
+    position: relative;
+    padding-right: 76px;
+    margin-bottom: 50px;
+    cursor: pointer;
+
+    .search-component {
+        input {
+            width: 340px;
+            height: 35px;
+            padding-left: 10px;
+            background-color: $yellow;
+            color: $darkBlue;
+            border: 3px solid $darkBlue;
+            border-radius: 10px 0 0 10px;
+            @include mixins.font(Pokemon, 20px, normal, 300, 90%);
+
+            @media (max-width: 500px) {
+                width: 200px;
+            }
+
+            &::placeholder {
+                color: $darkBlue;
+                opacity: 0.3;
+            }
+
+            &:active,
+            &:focus {
+                border: 3px solid $darkBlue;
+                outline: none;
+            }
+        }
+
+        button {
+            width: 70px;
+            height: 41px;
+            background-color: $darkBlue;
+            color: $yellow;
+            border: 3px solid $darkBlue;
+            border-radius: 0 10px 10px 0;
+            position: absolute;
+            cursor: pointer;
+            @include mixins.font(Pokemon, 20px, normal, 300, 90%);
+        }
+    }
+
+    .search-dropdown {
+        width: 70%;
+        background-color: $white;
+        border-radius: 10px;
+        position: absolute;
+        z-index: 10;
+
+        .search-dropdown-item {
+            height: 30px;
+            padding-left: 20px;
+            color: $darkBlue;
+            border-bottom: 1px solid $blue;
+            @include mixins.flex(row, flex-start, center);
+            @include mixins.font(Pokemon, 20px, normal, 300, 90%);
+
+            &:hover {
+                background-color: $blue;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+
+    .search-bar-warning {
+        width: 100%;
+        height: 40px;
+        background-color: $red;
+        color: $white;
+        border-radius: 10px;
+        position: absolute;
+        bottom: -110%;
+        @include mixins.flex(row, center, center);
+        @include mixins.font(Pokemon, 20px, normal, 300, 90%);
+    }
+}
+
+
+// Filter Styles
+
+.filter-type {
+    position: relative;
+    margin-bottom: 50px;
+
+    .filter-input {
+        width: 400px;
+        height: 35px;
+        border: 3px solid $darkBlue;
+        border-radius: 10px;
+        padding: 0 10px;
+        color: $darkBlue;
+        background-color: $yellow;
+        transition: all 0.4s ease-in-out;
+        cursor: pointer;
+        text-transform: uppercase;
+        @include mixins.font(Pokemon, 20px, normal, 300, 90%);
+        @include mixins.flex(row, space-between, center);
+
+        @media (max-width: 500px) {
+            width: 260px;
+        }
+
+        &:hover {
+            background-color: $blue;
+        }
+
+        .filter-input-icon {
+            transition: all 0.5s ease-in-out;
+            width: 25px;
+
+            &.open {
+                transform: rotate3d(1, 0, 0, 180deg);
+            }
+        }
+    }
+
+    .filter-dropdown {
+        width: 70%;
+        background-color: $white;
+        border-radius: 10px;
+        position: absolute;
+        z-index: 10;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        cursor: pointer;
+
+        &.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        div {
+            height: 30px;
+            padding-left: 20px;
+            color: $darkBlue;
+            border-bottom: 1px solid $blue;
+            text-transform: uppercase;
+            @include mixins.flex(row, flex-start, center);
+            @include mixins.font(Pokemon, 20px, normal, 300, 90%);
+
+            &:hover {
+                background-color: $blue;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}
+
+// Footer Styles
+
+.footer {
+    width: 100%;
+    height: 400px;
+    padding-top: 50px;
+    border-top: 2px solid $red;
+    @include mixins.flex(row, center, center);
+
+    @media (max-width: 600px) {
+        height: 600px;
+    }
+
+    .footer-container{
+        width: calc(100% - 80px);
+        max-width: 1360px;
+        height: 100%;
+        padding: 100px 0;
+        position: relative;
+        gap: 50px;
+        @include mixins.flex(column, space-between, center);
+
+        @media (max-width: 800px) {
+            width: calc(100% - 30px);
+        }
+
+        h2 {
+            width: 100%;
+            text-align: center;
+            color: $red;
+            @include mixins.font(PokemonOutlined, 60px, normal, 300, 90%);
+
+            @media (max-width: 600px) {
+                @include mixins.font(PokemonOutlined, 50px, normal, 300, 90%);
+            }
+        }
+
+        .footer-contacts-box {
+            gap: 50px;
+            @include mixins.flex(row, center, center);
+
+            @media (max-width: 600px) {
+                gap: 20px;
+                @include mixins.flex(column, center, center);
+            }
+
+            .footer-contact {
+                gap: 10px;
+                color: $red;
+                cursor: pointer;
+                @include mixins.flex(row, center, center);
+
+                img {
+                    width: 40px;
+                }
+
+                span {
+                    position: relative;
+                    padding-bottom: 4px;
+                    @include mixins.font(Pokemon, 40px, normal, 300, 90%);
+
+                    &::before {
+                        content: '';
+                        width: 0px;
+                        height: 2px;
+                        background-color: $red;
+                        position: absolute;
+                        bottom: 0px;
+                        right: 0px;
+                        transition: all 0.4s ease-in-out;
+                    }
+                }
+                
+
+                &:hover span::before {
+                    right: unset;
+                    left: 0px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+// Error Message Styles
+
+.error-message {
+    width: 500px;
+    height: 80px;
+    background-color: $red;
+    color: $white;
+    border-radius: 10px;
+    @include mixins.flex(row, center, center);
+    @include mixins.font(Pokemon, 30px, normal, 300, 90%);
+
+}
+
+
+// Animate Ball Styles
+
+.animate-ball {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .animate-ball-container {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        animation: rotateBall 3s ease-in-out infinite;
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+        }
+
+        &::before {
+            width: 100%;
+            height: 47%;
+            background-color: red;
+        }
+
+        &::after {
+            bottom: 0;
+            width: 100%;
+            height: 47%;
+            background-color: $white;
+        }
+
+        .pokemon-ball-stripe {
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            height: 20px;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            z-index: -1;
+            background-color: $black;
+        }
+
+        .pokemon-ball-button {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: calc(50% - 35px);
+            left: calc(50% - 35px);
+            z-index: 2;
+            background-color: $grey;
+            border-radius: 50%;
+            border: 10px solid $white;
+            box-shadow: 0 0 0 10px $black;
+            animation: buttonColorEffect 3s ease-in-out infinite;
+        }
+    }
+}
+
+// Animation For Ball
+
+@keyframes rotateBall {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    50% {
+        transform: rotateZ(360deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+    }
+} 
+
+@keyframes buttonColorEffect {
+    0% {
+        background-color: $grey;
+    }
+    50% {
+        background-color: $red;
+    }
+    100% {
+        background-color: $grey;
+    }
+} 
