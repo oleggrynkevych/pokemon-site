@@ -15,7 +15,14 @@
 
 ## How To Start
  ### 👉 You need on your machine: Git, Node.js, npm;
- ### 👉 Cloning the Repository:
-  ####
+ ### 👉 Cloning the repository:
+  #### git clone https://github.com/oleggrynkevych/pokemon-site.git
+  #### cd pokemon-site
+ ### 👉 Install the project dependencies using npm:
+  #### npm install
+ ### 👉 Running the project: 
+  #### npm start
+ ### 👉 You can also run several tests for this project in your terminal: 
+  #### npm run test
 
 
