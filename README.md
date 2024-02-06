@@ -1,1 +1,3 @@
 # pokemon-site
+
+## ⚙️ Tech Stack
